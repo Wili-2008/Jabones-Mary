@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f0e7">
+    <title>Jabones Artesanales Mary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --paper: #f7f0e7;
+            --cream: #fffaf3;
+            --ink: #342d27;
+            --muted: #756b60;
+            --clay: #a84f38;
+            --clay-dark: #843b2b;
+            --sage: #68765a;
+            --line: #e4d8c9;
+            --serif: "Playfair Display", Georgia, serif;
+            --sans: "DM Sans", "Segoe UI", sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+        }
+
+        .topline {
+            height: 8px;
+            background: linear-gradient(90deg, #68765a 0 22%, #d49a64 22% 48%, #a84f38 48% 76%, #d8b69a 76%);
+        }
+
+        .page-shell {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .masthead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            color: var(--ink);
+            font-family: var(--serif);
+            font-size: 21px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .brand span { color: var(--clay); }
+
+        .masthead-note {
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 240px;
+            align-items: end;
+            gap: 32px;
+            padding: 66px 0 38px;
+        }
+
+        .eyebrow {
+            margin: 0 0 12px;
+            color: var(--sage);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        h1, h2, h3, p { margin-top: 0; }
+
+        h1 {
+            max-width: 720px;
+            margin-bottom: 14px;
+            font-family: var(--serif);
+            font-size: clamp(42px, 6vw, 68px);
+            font-weight: 500;
+            line-height: 1.05;
+        }
+
+        h1 span { color: var(--clay); }
+
+        .intro-copy {
+            max-width: 570px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .intro-aside {
+            padding: 0 0 4px 20px;
+            border-left: 2px solid #d5b08a;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .intro-aside strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--ink);
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .collection-heading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 8px 0 16px;
+        }
+
+        .collection-heading h2 {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: 26px;
+            font-weight: 500;
+        }
+
+        .collection-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .product-card { min-width: 0; }
+
+        .photo-frame {
+            position: relative;
+            display: grid;
+            min-height: 205px;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            place-items: center;
+            border: 1px solid rgba(75, 56, 39, 0.08);
+            background: #e8d9c8;
+        }
+
+        .photo-frame::before, .photo-frame::after {
+            position: absolute;
+            content: "";
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        .photo-frame::before {
+            width: 190px;
+            height: 190px;
+            background: rgba(255, 250, 243, 0.48);
+            transform: translate(-35px, -35px);
+        }
+
+        .photo-frame::after {
+            width: 150px;
+            height: 150px;
+            background: rgba(168, 79, 56, 0.10);
+            transform: translate(70px, 82px);
+        }
+
+        .photo-frame--lavender { background: #ded8cb; }
+        .photo-frame--oat { background: #e8d9bb; }
+        .photo-frame--calendula { background: #e7cfaa; }
+        .photo-frame--charcoal { background: #c9c4b9; }
+        .photo-frame--citrus { background: #ead2a8; }
+
+        .soap-placeholder {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            width: 118px;
+            height: 104px;
+            place-items: center;
+            border: 1px solid rgba(81, 60, 43, 0.12);
+            border-radius: 19px 22px 17px 20px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.05)), var(--soap-color);
+            box-shadow: 0 20px 28px rgba(75, 56, 39, 0.16), inset 0 -7px 12px rgba(78, 56, 36, 0.08);
+            color: rgba(63, 49, 37, 0.72);
+            transform: rotate(-8deg);
+        }
+
+        .soap-placeholder span {
+            font-size: 31px;
+            line-height: 1;
+        }
+
+        .photo-instruction {
+            position: absolute;
+            z-index: 1;
+            right: 8px;
+            bottom: 8px;
+            left: 8px;
+            color: rgba(52, 45, 39, 0.67);
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .product-photo {
+            position: absolute;
+            z-index: 2;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-name {
+            margin: 12px 0 2px;
+            font-family: var(--serif);
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .product-note {
+            margin: 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .product-price {
+            margin: 8px 0 10px;
+            color: var(--clay-dark);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            padding: 0 14px;
+            border: 1px solid var(--sage);
+            background: var(--sage);
+            color: #fff;
+            cursor: pointer;
+            font: 600 13px var(--sans);
+            text-decoration: none;
+            transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+        }
+
+        .button:hover {
+            border-color: #536047;
+            background: #536047;
+            transform: translateY(-1px);
+        }
+
+        .button:focus-visible, .quantity-control button:focus-visible, .share-button:focus-visible,
+        .whatsapp-float:focus-visible, .order-link:focus-visible {
+            outline: 3px solid #d49a64;
+            outline-offset: 3px;
+        }
+
+        .product-order-button { width: 100%; }
+
+        .order-builder {
+            margin: 48px 0 0;
+            padding: 28px;
+            border: 1px solid var(--line);
+            background: rgba(255, 250, 243, 0.72);
+        }
+
+        .order-builder h2 {
+            margin-bottom: 5px;
+            font-family: var(--serif);
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        .order-intro {
+            margin-bottom: 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .order-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+            gap: 28px;
+        }
+
+        .order-products { display: grid; }
+
+        .order-product {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .order-product:first-child { border-top: 1px solid var(--line); }
+
+        .order-product-name {
+            display: block;
+            margin-bottom: 3px;
+            font-family: var(--serif);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .order-product-price {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .quantity-control {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
+
+        .quantity-control button {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border: 1px solid var(--line);
+            background: var(--cream);
+            color: var(--ink);
+            cursor: pointer;
+            font: 600 18px var(--sans);
+        }
+
+        .quantity-control button:hover { border-color: var(--clay); color: var(--clay-dark); }
+        .quantity-value { min-width: 16px; text-align: center; font-size: 14px; font-weight: 600; }
+
+        .order-summary {
+            align-self: start;
+            padding: 20px;
+            background: var(--cream);
+        }
+
+        .order-summary h3 {
+            margin-bottom: 14px;
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .summary-lines {
+            display: grid;
+            gap: 9px;
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .summary-line { display: flex; justify-content: space-between; gap: 12px; }
+        .summary-empty { margin: 0; color: var(--muted); font-size: 13px; }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 13px;
+            border-top: 1px solid var(--line);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .order-message {
+            min-height: 20px;
+            margin: 12px 0 0;
+            color: var(--clay-dark);
+            font-size: 12px;
+        }
+
+        .whatsapp-order-button { width: 100%; margin-top: 15px; }
+
+        .share-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 18px;
+        }
+
+        .share-button {
+            padding: 7px 0;
+            border: 0;
+            background: none;
+            color: var(--clay-dark);
+            cursor: pointer;
+            font: 600 13px var(--sans);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .share-status {
+            min-height: 18px;
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            z-index: 5;
+            right: max(20px, env(safe-area-inset-right));
+            bottom: max(20px, env(safe-area-inset-bottom));
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 17px;
+            border: 1px solid #536047;
+            border-radius: 999px;
+            background: var(--sage);
+            box-shadow: 0 5px 18px rgba(52, 45, 39, 0.2);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 160ms ease, background-color 160ms ease;
+        }
+
+        .whatsapp-float:hover { background: #536047; transform: translateY(-2px); }
+
+        .details-section {
+            margin: 48px 0 70px;
+            padding-top: 26px;
+            border-top: 1px solid var(--line);
+        }
+
+        .details-section h2 {
+            margin-bottom: 5px;
+            font-family: var(--serif);
+            font-size: 30px;
+            font-weight: 500;
+        }
+
+        .details-lead {
+            margin-bottom: 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 0 0 12px;
+            scrollbar-color: #c9ad91 transparent;
+        }
+
+        .tab {
+            flex: 0 0 auto;
+            padding: 10px 15px;
+            border: 1px solid var(--line);
+            border-radius: 2px;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font: 600 13px var(--sans);
+        }
+
+        .tab:hover { border-color: var(--clay); color: var(--clay-dark); }
+
+        .tab[aria-selected="true"] {
+            border-color: var(--clay);
+            background: var(--clay);
+            color: #fffaf3;
+        }
+
+        .detail-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            min-height: 175px;
+            padding: 26px 28px;
+            border-left: 3px solid var(--sage);
+            background: var(--cream);
+        }
+
+        .detail-panel h3 {
+            margin-bottom: 8px;
+            font-family: var(--serif);
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        .detail-panel p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .detail-label {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--sage);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 24px 0 32px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .footer p { margin: 0; }
+
+        .order-link {
+            display: inline-flex;
+            align-items: center;
+            min-height: 42px;
+            padding: 0 17px;
+            background: var(--sage);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        @media (max-width: 850px) {
+            .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .photo-frame { min-height: 220px; }
+            .order-layout { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .page-shell { width: min(100% - 32px, 480px); }
+            .masthead { padding: 20px 0; }
+            .masthead-note { max-width: 120px; text-align: right; }
+            .intro { grid-template-columns: 1fr; gap: 20px; padding: 48px 0 30px; }
+            h1 { font-size: 46px; }
+            .intro-aside { max-width: 280px; }
+            .collection-heading { align-items: start; flex-direction: column; gap: 5px; }
+            .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+            .photo-frame { min-height: 0; }
+            .soap-placeholder { width: 96px; height: 86px; }
+            .details-section { margin-top: 38px; }
+            .detail-panel { grid-template-columns: 1fr; gap: 22px; padding: 22px 20px; }
+            .footer { align-items: flex-start; flex-direction: column; }
+            .order-builder { margin-top: 38px; padding: 22px 18px; }
+            .order-builder h2 { font-size: 27px; }
+            .order-layout { gap: 20px; }
+            .order-product { gap: 8px; }
+            .order-summary { padding: 18px; }
+            .share-row { justify-content: flex-start; }
+            .share-status { text-align: left; }
+            .whatsapp-float { right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); }
+            .footer { padding-bottom: 90px; }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .intro, .product-card, .details-section { animation: arrive 550ms both; }
+            .product-card:nth-child(2) { animation-delay: 60ms; }
+            .product-card:nth-child(3) { animation-delay: 120ms; }
+            .product-card:nth-child(4) { animation-delay: 180ms; }
+            .product-card:nth-child(5) { animation-delay: 240ms; }
+            @keyframes arrive {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topline" aria-hidden="true"></div>
+    <header class="page-shell masthead">
+        <a class="brand" href="#inicio">Mary <span>·</span> Hecho a mano</a>
+        <span class="masthead-note">Pequeños rituales, ingredientes nobles</span>
+    </header>
+
+    <main id="inicio" class="page-shell">
+        <section class="intro" aria-labelledby="page-title">
+            <div>
+                <p class="eyebrow">Cuidado artesanal para todos los días</p>
+                <h1 id="page-title">Jabones <span>Artesanales Mary</span></h1>
+                <p class="intro-copy">Una colección hecha con calma, inspirada en los aromas y colores de la naturaleza. Elige tu favorito y conoce sus ingredientes.</p>
+            </div>
+            <aside class="intro-aside">
+                <strong>Un baño más especial</strong>
+                Fórmulas artesanales para disfrutar un momento sencillo de cuidado personal.
+            </aside>
+        </section>
+
+        <section aria-labelledby="collection-title">
+            <div class="collection-heading">
+                <h2 id="collection-title">La colección</h2>
+                <p>Explora cinco favoritos de Mary</p>
+            </div>
+            <div class="gallery">
+                <article class="product-card">
+                    <div class="photo-frame photo-frame--lavender" role="img" aria-label="Espacio para la fotografía del jabón de lavanda">
+                        <div class="soap-placeholder" style="--soap-color: #c9bdad"><span aria-hidden="true">✿</span></div>
+                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
+                        <img class="product-photo" src="jabon-lavanda.jpg" alt="Jabón artesanal de lavanda" onerror="this.hidden = true">
+                    </div>
+                    <h3 class="product-name">Lavanda</h3>
+                    <p class="product-note">Floral y sereno</p>
+                    <p class="product-price" data-price-for="lavanda"></p>
+                    <button class="button product-order-button" type="button" data-add-product="lavanda">🛒 Pedir</button>
+                </article>
+                <article class="product-card">
+                    <div class="photo-frame photo-frame--oat" role="img" aria-label="Espacio para la fotografía del jabón de avena y miel">
+                        <div class="soap-placeholder" style="--soap-color: #d2b77f"><span aria-hidden="true">✳</span></div>
+                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
+                        <img class="product-photo" src="jabon-avena-miel.jpg" alt="Jabón artesanal de avena y miel" onerror="this.hidden = true">
+                    </div>
+                    <h3 class="product-name">Avena y miel</h3>
+                    <p class="product-note">Suave y reconfortante</p>
+                    <p class="product-price" data-price-for="avena"></p>
+                    <button class="button product-order-button" type="button" data-add-product="avena">🛒 Pedir</button>
+                </article>
+                <article class="product-card">
+                    <div class="photo-frame photo-frame--calendula" role="img" aria-label="Espacio para la fotografía del jabón de caléndula">
+                        <div class="soap-placeholder" style="--soap-color: #d8a751"><span aria-hidden="true">✿</span></div>
+                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
+                        <img class="product-photo" src="jabon-calendula.jpg" alt="Jabón artesanal de caléndula" onerror="this.hidden = true">
+                    </div>
+                    <h3 class="product-name">Caléndula</h3>
+                    <p class="product-note">Botánico y delicado</p>
+                    <p class="product-price" data-price-for="calendula"></p>
+                    <button class="button product-order-button" type="button" data-add-product="calendula">🛒 Pedir</button>
+                </article>
+                <article class="product-card">
+                    <div class="photo-frame photo-frame--charcoal" role="img" aria-label="Espacio para la fotografía del jabón de carbón activado">
+                        <div class="soap-placeholder" style="--soap-color: #77746d"><span aria-hidden="true">✦</span></div>
+                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
+                        <img class="product-photo" src="jabon-carbon.jpg" alt="Jabón artesanal de carbón activado" onerror="this.hidden = true">
+                    </div>
+                    <h3 class="product-name">Carbón activado</h3>
+                    <p class="product-note">Fresco y purificante</p>
+                    <p class="product-price" data-price-for="carbon"></p>
+                    <button class="button product-order-button" type="button" data-add-product="carbon">🛒 Pedir</button>
+                </article>
+                <article class="product-card">
+                    <div class="photo-frame photo-frame--citrus" role="img" aria-label="Espacio para la fotografía del jabón cítrico">
+                        <div class="soap-placeholder" style="--soap-color: #d99448"><span aria-hidden="true">✧</span></div>
+                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
+                        <img class="product-photo" src="jabon-citrico.jpg" alt="Jabón artesanal cítrico" onerror="this.hidden = true">
+                    </div>
+                    <h3 class="product-name">Cítrico</h3>
+                    <p class="product-note">Alegre y revitalizante</p>
+                    <p class="product-price" data-price-for="citrico"></p>
+                    <button class="button product-order-button" type="button" data-add-product="citrico">🛒 Pedir</button>
+                </article>
+            </div>
+            <div class="share-row">
+                <button class="share-button" id="share-page" type="button">Compartir página</button>
+            </div>
+            <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="order-builder" id="arma-tu-pedido" aria-labelledby="order-title">
+            <h2 id="order-title">Arma tu pedido</h2>
+            <p class="order-intro">Elige las cantidades que deseas. Tu selección solo se mantiene en este navegador.</p>
+            <div class="order-layout">
+                <div class="order-products" id="order-products" aria-label="Cantidades de productos"></div>
+                <aside class="order-summary" aria-labelledby="summary-title">
+                    <h3 id="summary-title">Resumen del pedido</h3>
+                    <div class="summary-lines" id="summary-lines" aria-live="polite"></div>
+                    <div class="summary-total"><span>Total</span><span id="summary-total">Bs. —</span></div>
+                    <p class="order-message" id="order-message" role="status" aria-live="polite"></p>
+                    <button class="button whatsapp-order-button" id="send-order" type="button">Pedir por WhatsApp</button>
+                </aside>
+            </div>
+        </section>
+
+        <section class="details-section" aria-labelledby="details-title">
+            <h2 id="details-title">Conoce cada jabón</h2>
+            <p class="details-lead">Selecciona una pestaña para ver sus ingredientes y uso.</p>
+            <div class="tabs" role="tablist" aria-label="Jabones artesanales">
+                <button class="tab" id="tab-lavanda" type="button" role="tab" aria-selected="true" aria-controls="soap-details" tabindex="0" data-product="lavanda">Lavanda</button>
+                <button class="tab" id="tab-avena" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="avena">Avena y miel</button>
+                <button class="tab" id="tab-calendula" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="calendula">Caléndula</button>
+                <button class="tab" id="tab-carbon" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="carbon">Carbón activado</button>
+                <button class="tab" id="tab-citrico" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="citrico">Cítrico</button>
+            </div>
+            <div class="detail-panel" id="soap-details" role="tabpanel" aria-labelledby="tab-lavanda" tabindex="0">
+                <div>
+                    <span class="detail-label">El jabón</span>
+                    <h3 id="detail-name">Lavanda</h3>
+                    <p id="detail-composition">Elaborado con aceites vegetales, manteca de karité y aroma de lavanda.</p>
+                </div>
+                <div>
+                    <span class="detail-label">Para qué sirve</span>
+                    <p id="detail-use">Para la limpieza diaria de manos y cuerpo, con un aroma floral que acompaña un momento de calma.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-shell footer">
+        <p>Jabones Artesanales Mary <span aria-hidden="true">·</span> Consultas y pedidos: <a href="tel:70085786">70085786</a></p>
+        <a class="order-link" id="footer-order" href="#arma-tu-pedido" target="_blank" rel="noopener noreferrer">Hacer un pedido</a>
+    </footer>
+    <a class="whatsapp-float" id="whatsapp-float" href="#arma-tu-pedido" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">WhatsApp <span aria-hidden="true">↗</span></a>
+
+    <script>
+        // Incluye el prefijo internacional de Bolivia (+591) al teléfono local que ya estaba en la página.
+        const NUMERO_WHATSAPP = "59170085786";
+        const MENSAJE_INICIAL = "Hola, quiero realizar un pedido de Jabones Artesanales Mary.";
+        const MENSAJE_CONTACTO = "Hola, quisiera consultar sobre los jabones artesanales de Mary.";
+
+        // Cambia cada `price: null` por el precio numérico en Bs. cuando Mary confirme los importes.
+        const soapDetails = {
+            lavanda: {
+                name: "Lavanda",
+                price: null,
+                composition: "Elaborado con aceites vegetales, manteca de karité y aroma de lavanda.",
+                use: "Para la limpieza diaria de manos y cuerpo, con un aroma floral que acompaña un momento de calma."
+            },
+            avena: {
+                name: "Avena y miel",
+                price: null,
+                composition: "Una mezcla de aceites vegetales con avena molida y miel.",
+                use: "Para limpiar manos y cuerpo con una textura suave y un aroma dulce y cálido."
+            },
+            calendula: {
+                name: "Caléndula",
+                price: null,
+                composition: "Hecho con aceites vegetales y pétalos de caléndula.",
+                use: "Para la limpieza diaria de manos y cuerpo; una opción botánica de aroma delicado."
+            },
+            carbon: {
+                name: "Carbón activado",
+                price: null,
+                composition: "Elaborado con aceites vegetales y carbón activado.",
+                use: "Para la limpieza de manos y cuerpo, especialmente cuando se busca retirar el exceso de grasa de la piel."
+            },
+            citrico: {
+                name: "Cítrico",
+                price: null,
+                composition: "Una base de aceites vegetales con aroma y notas de naranja y limón.",
+                use: "Para la limpieza diaria de manos y cuerpo, con un aroma fresco y luminoso."
+            }
+        };
+
+        // Las cantidades solo se guardan en memoria y comienzan en cero cada vez que se carga la página.
+        const cantidades = Object.fromEntries(Object.keys(soapDetails).map((productId) => [productId, 0]));
+        const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+        const detailPanel = document.querySelector('[role="tabpanel"]');
+
+        function crearEnlaceWhatsApp(mensaje) {
+            return `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+        }
+
+        function formatoPrecio(precio) {
+            return precio === null ? "Precio por confirmar" : `Bs. ${precio.toFixed(2)}`;
+        }
+
+        function actualizarPrecios() {
+            document.querySelectorAll('[data-price-for]').forEach((element) => {
+                element.textContent = formatoPrecio(soapDetails[element.dataset.priceFor].price);
+            });
+        }
+
+        function renderizarProductosPedido() {
+            const container = document.getElementById('order-products');
+            container.replaceChildren();
+
+            Object.entries(soapDetails).forEach(([productId, soap]) => {
+                const row = document.createElement('div');
+                row.className = 'order-product';
+
+                const productInfo = document.createElement('div');
+                const name = document.createElement('span');
+                name.className = 'order-product-name';
+                name.textContent = soap.name;
+                const price = document.createElement('span');
+                price.className = 'order-product-price';
+                price.textContent = formatoPrecio(soap.price);
+                productInfo.append(name, price);
+
+                const controls = document.createElement('div');
+                controls.className = 'quantity-control';
+                controls.setAttribute('aria-label', `Cantidad de ${soap.name}`);
+
+                const decrease = document.createElement('button');
+                decrease.type = 'button';
+                decrease.textContent = '−';
+                decrease.setAttribute('aria-label', `Quitar una unidad de ${soap.name}`);
+                decrease.addEventListener('click', () => cambiarCantidad(productId, -1));
+
+                const quantity = document.createElement('span');
+                quantity.className = 'quantity-value';
+                quantity.id = `quantity-${productId}`;
+                quantity.setAttribute('aria-live', 'polite');
+
+                const increase = document.createElement('button');
+                increase.type = 'button';
+                increase.textContent = '+';
+                increase.setAttribute('aria-label', `Agregar una unidad de ${soap.name}`);
+                increase.addEventListener('click', () => cambiarCantidad(productId, 1));
+
+                controls.append(decrease, quantity, increase);
+                row.append(productInfo, controls);
+                container.append(row);
+            });
+        }
+
+        function cambiarCantidad(productId, cambio) {
+            cantidades[productId] = Math.max(0, cantidades[productId] + cambio);
+            document.getElementById(`quantity-${productId}`).textContent = String(cantidades[productId]);
+            actualizarResumen();
+            document.getElementById('order-message').textContent = '';
+        }
+
+        function actualizarResumen() {
+            const selectedProducts = Object.entries(cantidades).filter(([, quantity]) => quantity > 0);
+            const lines = document.getElementById('summary-lines');
+            lines.replaceChildren();
+            let total = 0;
+            const totalIsKnown = selectedProducts.every(([productId]) => soapDetails[productId].price !== null);
+
+            if (selectedProducts.length === 0) {
+                const empty = document.createElement('p');
+                empty.className = 'summary-empty';
+                empty.textContent = 'Aún no has seleccionado productos.';
+                lines.append(empty);
+            } else {
+                selectedProducts.forEach(([productId, quantity]) => {
+                    const soap = soapDetails[productId];
+                    const line = document.createElement('div');
+                    line.className = 'summary-line';
+                    const label = document.createElement('span');
+                    label.textContent = `${soap.name} × ${quantity}`;
+                    const subtotal = document.createElement('span');
+                    if (soap.price === null) {
+                        subtotal.textContent = 'Por confirmar';
+                    } else {
+                        const amount = soap.price * quantity;
+                        total += amount;
+                        subtotal.textContent = `Bs. ${amount.toFixed(2)}`;
+                    }
+                    line.append(label, subtotal);
+                    lines.append(line);
+                });
+            }
+
+            document.getElementById('summary-total').textContent =
+                selectedProducts.length === 0 || !totalIsKnown ? 'Por confirmar' : `Bs. ${total.toFixed(2)}`;
+        }
+
+        function agregarProducto(productId) {
+            cambiarCantidad(productId, 1);
+            document.getElementById('arma-tu-pedido').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function enviarPedido() {
+            const selectedProducts = Object.entries(cantidades).filter(([, quantity]) => quantity > 0);
+            const messageElement = document.getElementById('order-message');
+            if (selectedProducts.length === 0) {
+                messageElement.textContent = 'Selecciona al menos un jabón para preparar tu pedido.';
+                return;
+            }
+
+            const lines = selectedProducts.map(([productId, quantity]) => {
+                const soap = soapDetails[productId];
+                const subtotal = soap.price === null ? 'precio por confirmar' : `Bs. ${(soap.price * quantity).toFixed(2)}`;
+                return `- ${soap.name} x${quantity} (${subtotal})`;
+            });
+            const total = selectedProducts.every(([productId]) => soapDetails[productId].price !== null)
+                ? `Bs. ${selectedProducts.reduce((sum, [productId, quantity]) => sum + soapDetails[productId].price * quantity, 0).toFixed(2)}`
+                : 'Por confirmar';
+            const message = [
+                'Hola, quiero realizar el siguiente pedido de Jabones Artesanales Mary:',
+                '',
+                ...lines,
+                '',
+                `Total: ${total}`,
+                '',
+                'Quisiera consultar disponibilidad y coordinar el pedido.'
+            ].join('\n');
+            window.open(crearEnlaceWhatsApp(message), '_blank', 'noopener,noreferrer');
+        }
+
+        async function compartirPagina() {
+            const status = document.getElementById('share-status');
+            try {
+                if (navigator.share) {
+                    await navigator.share({ title: document.title, text: 'Jabones Artesanales Mary', url: window.location.href });
+                    status.textContent = 'Gracias por compartir la página.';
+                    return;
+                }
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(window.location.href);
+                } else {
+                    const urlField = document.createElement('textarea');
+                    urlField.value = window.location.href;
+                    urlField.setAttribute('readonly', '');
+                    urlField.style.position = 'fixed';
+                    urlField.style.opacity = '0';
+                    document.body.append(urlField);
+                    urlField.select();
+                    const copied = document.execCommand('copy');
+                    urlField.remove();
+                    if (!copied) throw new Error('No se pudo copiar el enlace automáticamente.');
+                }
+                status.textContent = 'Enlace copiado al portapapeles.';
+            } catch (error) {
+                if (error.name === 'AbortError') return;
+                status.textContent = 'No se pudo compartir o copiar el enlace. Puedes copiar la dirección desde tu navegador.';
+            }
+        }
+
+        function selectSoap(tab) {
+            const soap = soapDetails[tab.dataset.product];
+            tabs.forEach((item) => {
+                const selected = item === tab;
+                item.setAttribute('aria-selected', String(selected));
+                item.tabIndex = selected ? 0 : -1;
+            });
+            detailPanel.setAttribute('aria-labelledby', tab.id);
+            document.getElementById('detail-name').textContent = soap.name;
+            document.getElementById('detail-composition').textContent = soap.composition;
+            document.getElementById('detail-use').textContent = soap.use;
+        }
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => selectSoap(tab));
+            tab.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+                event.preventDefault();
+                const direction = event.key === 'ArrowRight' ? 1 : -1;
+                const nextTab = tabs[(index + direction + tabs.length) % tabs.length];
+                nextTab.focus();
+                selectSoap(nextTab);
+            });
+        });
+
+        document.querySelectorAll('[data-add-product]').forEach((button) => {
+            button.addEventListener('click', () => agregarProducto(button.dataset.addProduct));
+        });
+        document.getElementById('footer-order').href = crearEnlaceWhatsApp(MENSAJE_INICIAL);
+        document.getElementById('whatsapp-float').href = crearEnlaceWhatsApp(MENSAJE_CONTACTO);
+        document.getElementById('send-order').addEventListener('click', enviarPedido);
+        document.getElementById('share-page').addEventListener('click', compartirPagina);
+        actualizarPrecios();
+        renderizarProductosPedido();
+        actualizarResumen();
+    </script>
+</body>
+</html>
