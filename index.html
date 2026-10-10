@@ -145,7 +145,7 @@
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 14px;
         }
 
@@ -185,8 +185,9 @@
 
         .photo-frame--lavender { background: #ded8cb; }
         .photo-frame--oat { background: #e8d9bb; }
-        .photo-frame--calendula { background: #e7cfaa; }
-        .photo-frame--charcoal { background: #c9c4b9; }
+        .photo-frame--rice { background: #e7e4d7; }
+        .photo-frame--aloe { background: #d9e1cf; }
+        .photo-frame--chamomile { background: #eee2bd; }
         .photo-frame--citrus { background: #ead2a8; }
 
         .soap-placeholder {
@@ -537,6 +538,19 @@
 
         .footer p { margin: 0; }
 
+        .footer-contact {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer-logo {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
         .order-link {
             display: inline-flex;
             align-items: center;
@@ -616,63 +630,74 @@
         <section aria-labelledby="collection-title">
             <div class="collection-heading">
                 <h2 id="collection-title">La colección</h2>
-                <p>Explora cinco favoritos de Mary</p>
+                <p>Seis jabones artesanales · Bs. 15 cada uno</p>
             </div>
             <div class="gallery">
                 <article class="product-card">
-                    <div class="photo-frame photo-frame--lavender" role="img" aria-label="Espacio para la fotografía del jabón de lavanda">
+                    <div class="photo-frame photo-frame--citrus">
+                        <div class="soap-placeholder" style="--soap-color: #d99448"><span aria-hidden="true">✧</span></div>
+                        <span class="photo-instruction">Imagen no disponible</span>
+                        <img class="product-photo" src="naranjaymiel.jpg" alt="Jabones artesanales de naranja y miel" onerror="this.hidden = true">
+                    </div>
+                    <h3 class="product-name">Naranja y miel</h3>
+                    <p class="product-note">Cítrico, dulce y humectante</p>
+                    <p class="product-price" data-price-for="naranja"></p>
+                    <button class="button product-order-button" type="button" data-add-product="naranja">🛒 Pedir</button>
+                </article>
+                <article class="product-card">
+                    <div class="photo-frame photo-frame--lavender">
                         <div class="soap-placeholder" style="--soap-color: #c9bdad"><span aria-hidden="true">✿</span></div>
-                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
-                        <img class="product-photo" src="jabon-lavanda.jpg" alt="Jabón artesanal de lavanda" onerror="this.hidden = true">
+                        <span class="photo-instruction">Imagen no disponible</span>
+                        <img class="product-photo" src="jabonesdelavanda.jpg" alt="Jabones artesanales de lavanda con flores secas" onerror="this.hidden = true">
                     </div>
                     <h3 class="product-name">Lavanda</h3>
-                    <p class="product-note">Floral y sereno</p>
+                    <p class="product-note">Floral, relajante y perfumado</p>
                     <p class="product-price" data-price-for="lavanda"></p>
                     <button class="button product-order-button" type="button" data-add-product="lavanda">🛒 Pedir</button>
                 </article>
                 <article class="product-card">
-                    <div class="photo-frame photo-frame--oat" role="img" aria-label="Espacio para la fotografía del jabón de avena y miel">
+                    <div class="photo-frame photo-frame--rice">
+                        <div class="soap-placeholder" style="--soap-color: #e5e0c9"><span aria-hidden="true">✳</span></div>
+                        <span class="photo-instruction">Imagen no disponible</span>
+                        <img class="product-photo" src="Arroz.jpg" alt="Jabones artesanales de arroz" onerror="this.hidden = true">
+                    </div>
+                    <h3 class="product-name">Arroz</h3>
+                    <p class="product-note">Exfoliante y limpiador</p>
+                    <p class="product-price" data-price-for="arroz"></p>
+                    <button class="button product-order-button" type="button" data-add-product="arroz">🛒 Pedir</button>
+                </article>
+                <article class="product-card">
+                    <div class="photo-frame photo-frame--oat">
                         <div class="soap-placeholder" style="--soap-color: #d2b77f"><span aria-hidden="true">✳</span></div>
-                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
-                        <img class="product-photo" src="jabon-avena-miel.jpg" alt="Jabón artesanal de avena y miel" onerror="this.hidden = true">
+                        <span class="photo-instruction">Imagen no disponible</span>
+                        <img class="product-photo" src="Avenaymiel.jpg" alt="Jabones artesanales de avena y miel" onerror="this.hidden = true">
                     </div>
                     <h3 class="product-name">Avena y miel</h3>
-                    <p class="product-note">Suave y reconfortante</p>
+                    <p class="product-note">Nutrición y suavidad para tu piel</p>
                     <p class="product-price" data-price-for="avena"></p>
                     <button class="button product-order-button" type="button" data-add-product="avena">🛒 Pedir</button>
                 </article>
                 <article class="product-card">
-                    <div class="photo-frame photo-frame--calendula" role="img" aria-label="Espacio para la fotografía del jabón de caléndula">
-                        <div class="soap-placeholder" style="--soap-color: #d8a751"><span aria-hidden="true">✿</span></div>
-                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
-                        <img class="product-photo" src="jabon-calendula.jpg" alt="Jabón artesanal de caléndula" onerror="this.hidden = true">
+                    <div class="photo-frame photo-frame--aloe">
+                        <div class="soap-placeholder" style="--soap-color: #9aab78"><span aria-hidden="true">✦</span></div>
+                        <span class="photo-instruction">Imagen no disponible</span>
+                        <img class="product-photo" src="sabila.jpg" alt="Jabones artesanales de sábila" onerror="this.hidden = true">
                     </div>
-                    <h3 class="product-name">Caléndula</h3>
-                    <p class="product-note">Botánico y delicado</p>
-                    <p class="product-price" data-price-for="calendula"></p>
-                    <button class="button product-order-button" type="button" data-add-product="calendula">🛒 Pedir</button>
+                    <h3 class="product-name">Sábila</h3>
+                    <p class="product-note">Hidratante, suave y refrescante</p>
+                    <p class="product-price" data-price-for="sabila"></p>
+                    <button class="button product-order-button" type="button" data-add-product="sabila">🛒 Pedir</button>
                 </article>
                 <article class="product-card">
-                    <div class="photo-frame photo-frame--charcoal" role="img" aria-label="Espacio para la fotografía del jabón de carbón activado">
-                        <div class="soap-placeholder" style="--soap-color: #77746d"><span aria-hidden="true">✦</span></div>
-                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
-                        <img class="product-photo" src="jabon-carbon.jpg" alt="Jabón artesanal de carbón activado" onerror="this.hidden = true">
+                    <div class="photo-frame photo-frame--chamomile">
+                        <div class="soap-placeholder" style="--soap-color: #e7d69c"><span aria-hidden="true">✿</span></div>
+                        <span class="photo-instruction">Imagen no disponible</span>
+                        <img class="product-photo" src="manzanilla.jpg" alt="Jabones artesanales de manzanilla" onerror="this.hidden = true">
                     </div>
-                    <h3 class="product-name">Carbón activado</h3>
-                    <p class="product-note">Fresco y purificante</p>
-                    <p class="product-price" data-price-for="carbon"></p>
-                    <button class="button product-order-button" type="button" data-add-product="carbon">🛒 Pedir</button>
-                </article>
-                <article class="product-card">
-                    <div class="photo-frame photo-frame--citrus" role="img" aria-label="Espacio para la fotografía del jabón cítrico">
-                        <div class="soap-placeholder" style="--soap-color: #d99448"><span aria-hidden="true">✧</span></div>
-                        <span class="photo-instruction">Agrega aquí la foto del jabón</span>
-                        <img class="product-photo" src="jabon-citrico.jpg" alt="Jabón artesanal cítrico" onerror="this.hidden = true">
-                    </div>
-                    <h3 class="product-name">Cítrico</h3>
-                    <p class="product-note">Alegre y revitalizante</p>
-                    <p class="product-price" data-price-for="citrico"></p>
-                    <button class="button product-order-button" type="button" data-add-product="citrico">🛒 Pedir</button>
+                    <h3 class="product-name">Manzanilla</h3>
+                    <p class="product-note">Suave, relajante e hidratante</p>
+                    <p class="product-price" data-price-for="manzanilla"></p>
+                    <button class="button product-order-button" type="button" data-add-product="manzanilla">🛒 Pedir</button>
                 </article>
             </div>
             <div class="share-row">
@@ -700,28 +725,32 @@
             <h2 id="details-title">Conoce cada jabón</h2>
             <p class="details-lead">Selecciona una pestaña para ver sus ingredientes y uso.</p>
             <div class="tabs" role="tablist" aria-label="Jabones artesanales">
-                <button class="tab" id="tab-lavanda" type="button" role="tab" aria-selected="true" aria-controls="soap-details" tabindex="0" data-product="lavanda">Lavanda</button>
+                <button class="tab" id="tab-naranja" type="button" role="tab" aria-selected="true" aria-controls="soap-details" tabindex="0" data-product="naranja">Naranja y miel</button>
+                <button class="tab" id="tab-lavanda" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="lavanda">Lavanda</button>
+                <button class="tab" id="tab-arroz" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="arroz">Arroz</button>
                 <button class="tab" id="tab-avena" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="avena">Avena y miel</button>
-                <button class="tab" id="tab-calendula" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="calendula">Caléndula</button>
-                <button class="tab" id="tab-carbon" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="carbon">Carbón activado</button>
-                <button class="tab" id="tab-citrico" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="citrico">Cítrico</button>
+                <button class="tab" id="tab-sabila" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="sabila">Sábila</button>
+                <button class="tab" id="tab-manzanilla" type="button" role="tab" aria-selected="false" aria-controls="soap-details" tabindex="-1" data-product="manzanilla">Manzanilla</button>
             </div>
-            <div class="detail-panel" id="soap-details" role="tabpanel" aria-labelledby="tab-lavanda" tabindex="0">
+            <div class="detail-panel" id="soap-details" role="tabpanel" aria-labelledby="tab-naranja" tabindex="0">
                 <div>
                     <span class="detail-label">El jabón</span>
-                    <h3 id="detail-name">Lavanda</h3>
-                    <p id="detail-composition">Elaborado con aceites vegetales, manteca de karité y aroma de lavanda.</p>
+                    <h3 id="detail-name">Naranja y miel</h3>
+                    <p id="detail-composition">Glicerina base, miel pura, aceite esencial de naranja y colorante natural.</p>
                 </div>
                 <div>
                     <span class="detail-label">Para qué sirve</span>
-                    <p id="detail-use">Para la limpieza diaria de manos y cuerpo, con un aroma floral que acompaña un momento de calma.</p>
+                    <p id="detail-use">Ayuda a mantener la piel suave y a conservar su hidratación superficial. Tiene un aroma cítrico, dulce y agradable.</p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="page-shell footer">
-        <p>Jabones Artesanales Mary <span aria-hidden="true">·</span> Consultas y pedidos: <a href="tel:70085786">70085786</a></p>
+        <div class="footer-contact">
+            <img class="footer-logo" src="mari.png" alt="Logo de Jabones Artesanales Mary">
+            <p>Jabones Artesanales Mary <span aria-hidden="true">·</span> Consultas y pedidos: <a href="tel:70085786">70085786</a></p>
+        </div>
         <a class="order-link" id="footer-order" href="#arma-tu-pedido" target="_blank" rel="noopener noreferrer">Hacer un pedido</a>
     </footer>
     <a class="whatsapp-float" id="whatsapp-float" href="#arma-tu-pedido" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">WhatsApp <span aria-hidden="true">↗</span></a>
@@ -732,37 +761,42 @@
         const MENSAJE_INICIAL = "Hola, quiero realizar un pedido de Jabones Artesanales Mary.";
         const MENSAJE_CONTACTO = "Hola, quisiera consultar sobre los jabones artesanales de Mary.";
 
-        // Cambia cada `price: null` por el precio numérico en Bs. cuando Mary confirme los importes.
         const soapDetails = {
+            naranja: {
+                name: "Naranja y miel",
+                price: 15,
+                composition: "Glicerina base, miel pura, aceite esencial de naranja y colorante natural.",
+                use: "Ayuda a mantener la piel suave y a conservar su hidratación superficial. Tiene un aroma cítrico, dulce y agradable."
+            },
             lavanda: {
                 name: "Lavanda",
-                price: null,
-                composition: "Elaborado con aceites vegetales, manteca de karité y aroma de lavanda.",
-                use: "Para la limpieza diaria de manos y cuerpo, con un aroma floral que acompaña un momento de calma."
+                price: 15,
+                composition: "Glicerina blanca, esencia de lavanda, flores secas de lavanda, aceite de almendra y mica violeta.",
+                use: "Ayuda a relajarse, reducir el estrés y mejorar la calidad del sueño. Calma irritaciones y enrojecimientos, y deja la piel suave y perfumada."
+            },
+            arroz: {
+                name: "Arroz",
+                price: 15,
+                composition: "Glicerina, arroz en polvo, aceite de coco, vitamina E y esencia aromática.",
+                use: "Exfoliante, limpiador y blanqueador para uso facial y corporal."
             },
             avena: {
                 name: "Avena y miel",
-                price: null,
-                composition: "Una mezcla de aceites vegetales con avena molida y miel.",
-                use: "Para limpiar manos y cuerpo con una textura suave y un aroma dulce y cálido."
+                price: 15,
+                composition: "Glicerina, avena, miel, vitamina E y fragancia.",
+                use: "Aporta nutrición y suavidad para tu piel."
             },
-            calendula: {
-                name: "Caléndula",
-                price: null,
-                composition: "Hecho con aceites vegetales y pétalos de caléndula.",
-                use: "Para la limpieza diaria de manos y cuerpo; una opción botánica de aroma delicado."
+            sabila: {
+                name: "Sábila",
+                price: 15,
+                composition: "Glicerina, sábila (gel licuado) y vitamina E.",
+                use: "Hidrata, suaviza y refresca la piel. Ayuda a calmar irritaciones y quemaduras leves."
             },
-            carbon: {
-                name: "Carbón activado",
-                price: null,
-                composition: "Elaborado con aceites vegetales y carbón activado.",
-                use: "Para la limpieza de manos y cuerpo, especialmente cuando se busca retirar el exceso de grasa de la piel."
-            },
-            citrico: {
-                name: "Cítrico",
-                price: null,
-                composition: "Una base de aceites vegetales con aroma y notas de naranja y limón.",
-                use: "Para la limpieza diaria de manos y cuerpo, con un aroma fresco y luminoso."
+            manzanilla: {
+                name: "Manzanilla",
+                price: 15,
+                composition: "Glicerina, flor de manzanilla y fragancias.",
+                use: "Deja la piel suave y relajada. Ayuda a reducir irritaciones y calma e hidrata la piel."
             }
         };
 
